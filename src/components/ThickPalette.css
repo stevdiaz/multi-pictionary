@@ -1,0 +1,25 @@
+.ThickPalette-container {
+    font-family: var(--primary-font);
+    font-size: 30px;
+    color: var(--secondary-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-left: 100px;
+}
+.ThickPalette-thickness {
+    border-radius: 100%;
+    background-color: var(--secondary-color);
+}
+.ThickPalette-thicknessSelected {
+    border: 3px solid var(--primary-color);
+}
+.ThickPalette-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 40px;
+}

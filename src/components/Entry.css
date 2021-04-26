@@ -1,0 +1,30 @@
+.Entry-container {
+    position: relative;
+    top: 5vh;
+    text-align: center;
+}
+.Entry-firstLine {
+    font-family: var(--primary-font);
+    font-size: 100px;
+    font-weight: 400;
+    color: var(--primary-color);
+    position: relative;
+}
+.Entry-secondLine {
+    margin-top: 20px;
+    font-family: var(--primary-font);
+    font-size: 100px;
+    font-weight: 400;
+    color: var(--primary-color);
+    position: relative;
+}
+.Entry-description {
+    margin-top: 300px;
+    font-family: var(--secondary-font);
+    font-size: 50px;
+    font-weight: 200;
+    color: var(--secondary-color);
+}
+.Entry-startButton {
+    position: relative;
+}

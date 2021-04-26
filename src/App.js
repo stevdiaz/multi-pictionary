@@ -1,25 +1,67 @@
 import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Cursor from './components/Cursor';
+import Entry from './components/Entry';
+import Canvas from './components/Canvas';
+import Drawer from './components/Drawer';
+import ColorPalette from './components/ColorPalette';
 
-export default App;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isIndexPoint: false,
+      handPos: {x: 0, y: 0},
+      isGrabbing: false,
+      isCircular: false,
+      swipeObject: {
+        isSwipe: false,
+        isRight: false,
+      },
+    };
+  }
+
+  componentDidMount() {
+  
+  }
+  componentDidUpdate() {
+
+  }
+  onPointUpdate(isIndexPoint, handPos) {
+    this.setState({
+      isIndexPoint: isIndexPoint,
+      handPos: handPos,
+    });
+  }
+  onHandGrabUpdate(isGrabbing) {
+    this.setState({
+      isGrabbing: isGrabbing,
+    });
+  }
+  onCircularUpdate(isCircular) {
+    this.setState({
+      isCircular: isCircular,
+    });
+  }
+  onSwipeUpdate(swipeObject) {
+    this.setState({
+      swipeObject: swipeObject,
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Cursor onHandGrabUpdate={(isGrabbing) => this.onHandGrabUpdate(isGrabbing)} 
+                onPointUpdate={(isIndexPoint, handPos) => this.onPointUpdate(isIndexPoint, handPos)}
+                onCircularUpdate={(isCircular) => this.onCircularUpdate(isCircular)}
+                onSwipeUpdate={(swipeObject) => this.onSwipeUpdate(swipeObject)}/>
+        <Drawer isIndexPoint={this.state.isIndexPoint} 
+                handPos={this.state.handPos} 
+                swipeObject={this.state.swipeObject}
+                isGrabbing={this.state.isGrabbing}/>
+      </div>
+    )
+  }
+}

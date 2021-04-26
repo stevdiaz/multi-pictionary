@@ -1,0 +1,14 @@
+.Canvas-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: var(--primary-font);
+    justify-content: center;
+    align-items: center;
+}
+.Canvas-canvas {
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    height: 800px;
+    width: 1200px;
+}

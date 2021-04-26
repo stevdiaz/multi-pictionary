@@ -1,0 +1,11 @@
+.Drawer-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: var(--primary-font);
+    justify-content: center;
+}
+.Drawer-row {
+    display: flex;
+    flex-direction: row;
+}

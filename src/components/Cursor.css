@@ -1,0 +1,34 @@
+.Cursor-cursor {
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    opacity: 0.5;
+}
+.Cursor-cursorNormal {
+    animation-name: pointToHand;
+    animation-duration: 0.2s;
+}
+.Cursor-cursorGrab {
+    opacity: 1;
+}
+@keyframes handToPoint {
+    from {width: 70px; height: 70px}
+    to {width: 30px; height: 30px}
+}
+@keyframes pointToHand {
+    from {width: 30px; height: 30px}
+    to {width: 70px; height: 70px}
+}
+.Cursor-cursorPoint {
+    animation-name: handToPoint;
+    animation-duration: 0.2s;
+    width: 30px;
+    height: 30px;
+}

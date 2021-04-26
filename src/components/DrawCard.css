@@ -1,0 +1,19 @@
+.DrawCard-container {
+    margin: 20px;
+    font-weight: 400;
+    font-size: 38px;
+    font-family: var(--primary-font);
+    color: var(--secondary-color);
+    text-align: center;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    justify-content: center;
+    align-items: center;
+}
+.DrawCard-card {
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    font-weight: 500;
+}

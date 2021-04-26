@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500&family=Raleway:wght@300;400&display=swap');
+
+:root {
+  --primary-font: 'Prompt', sans-serif;
+  --secondary-font: 'Raleway', sans-serif;
+  --primary-color: #8CFF98;
+  --secondary-color: #424B54;
+  --offwhite: #FFFAFA;
+}
