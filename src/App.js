@@ -12,6 +12,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      didTransitionToDraw: false,
       isIndexPoint: false,
       handPos: {x: 0, y: 0},
       isGrabbing: false,
@@ -51,16 +52,25 @@ export default class App extends React.Component {
     });
   }
   render() {
+    let content = (<Entry />);
+    if (this.state.isGrabbing && !this.state.didTransitionToDraw) {
+      this.setState({
+        didTransitionToDraw: true,
+      });
+    }
+    if (this.state.didTransitionToDraw) {
+      content = (<Drawer isIndexPoint={this.state.isIndexPoint} 
+                          handPos={this.state.handPos} 
+                          swipeObject={this.state.swipeObject}
+                          isGrabbing={this.state.isGrabbing}/>);
+    }
     return (
       <div>
         <Cursor onHandGrabUpdate={(isGrabbing) => this.onHandGrabUpdate(isGrabbing)} 
                 onPointUpdate={(isIndexPoint, handPos) => this.onPointUpdate(isIndexPoint, handPos)}
                 onCircularUpdate={(isCircular) => this.onCircularUpdate(isCircular)}
                 onSwipeUpdate={(swipeObject) => this.onSwipeUpdate(swipeObject)}/>
-        <Drawer isIndexPoint={this.state.isIndexPoint} 
-                handPos={this.state.handPos} 
-                swipeObject={this.state.swipeObject}
-                isGrabbing={this.state.isGrabbing}/>
+        {content}
       </div>
     )
   }
