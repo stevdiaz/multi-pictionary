@@ -33,7 +33,14 @@ export default class ColorPalette extends React.Component {
     }
     render() {
         const colorDivs = Object.keys(colors).map(color => {
-            const className = 'ColorPalette-color' + (colors[color] === this.state.selectedColor ? ' ColorPalette-colorSelected' : '');
+            let className = 'ColorPalette-color';
+            if (colors[color] === this.state.selectedColor) {
+                if (this.state.selectedColor === colors.green) {
+                    className += ' ColorPalette-colorSelectedGreen'
+                } else {
+                    className += ' ColorPalette-colorSelected';
+                }
+            }
             return (
                 <div className={className} id={color} key={color} style={{backgroundColor: colors[color]}}/>
             );

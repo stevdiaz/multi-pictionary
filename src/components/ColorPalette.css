@@ -13,9 +13,10 @@
     border-radius: 100%;
 }
 .ColorPalette-colorSelected {
-    width: 100px;
-    height: 100px;
     border: 3px solid var(--primary-color);
+}
+.ColorPalette-colorSelectedGreen {
+    border: 3px solid var(--secondary-color);
 }
 .ColorPalette-row {
     display: flex;
