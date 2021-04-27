@@ -88,7 +88,7 @@ export default class Cursor extends React.Component {
         return hand.pinky.extended && circleGesture.length === 1 && circleGesture.duration > 700;
     }
     swipeGesture(hand, gestures) {
-        const swipeGesture = gestures.filter(gesture => gesture.type === 'swipe' && gesture.state === 'stop');
+        const swipeGesture = gestures.filter(gesture => gesture.type === 'swipe');
         return swipeGesture.length > 0;
     }
     swipeIsRight(gestures) {
