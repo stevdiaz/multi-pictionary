@@ -7,7 +7,7 @@ import DrawHelper from './DrawHelper';
 import ColorPalette from './ColorPalette';
 import ThickPalette from './ThickPalette';
 
-import { drawStates, colors, defaultColor, thickness, defaultThickness } from '../helpers/constants';
+import { drawStates, colors, defaultColor, thickness, defaultThickness, announcements } from '../helpers/constants';
 
 export default class Drawer extends React.Component {
     constructor(props) {
@@ -17,6 +17,7 @@ export default class Drawer extends React.Component {
             isDrawing: false,
             selectedColor: defaultColor,
             selectedThickness: defaultThickness,
+            announcement: "",
         };
     }
     componentDidMount() {
@@ -31,14 +32,26 @@ export default class Drawer extends React.Component {
             isDrawing: isDrawing,
         });
     }
-    onSelectColor(selectedColor) {
+    onSelectColor(selectedColor, colorName) {
         this.setState({
             selectedColor: selectedColor,
+            announcement: announcements.colorSelectedAnnouncement(colorName),
         });
     }
-    onSelectThickness(selectedThickness) {
+    onSelectThickness(selectedThickness, thicknessName) {
         this.setState({
             selectedThickness: selectedThickness,
+            announcement: announcements.thicknessSelectedAnnouncement(thicknessName),
+        });
+    }
+    onUndo() {
+        this.setState({
+            announcement: announcements.undoSuccessfulAnnouncement(),
+        });
+    }
+    onClear() {
+        this.setState({
+            announcement: announcements.clearSuccessfulAnnouncement(),
         });
     }
     render() {
@@ -48,19 +61,21 @@ export default class Drawer extends React.Component {
                 <div className='Drawer-row'>
                     <ColorPalette handPos={this.props.handPos} 
                         isGrabbing={this.props.isGrabbing}
-                        onSelectColor={(selectedColor) => this.onSelectColor(selectedColor)} />
+                        onSelectColor={(selectedColor, colorName) => this.onSelectColor(selectedColor, colorName)} />
                     <CanvasSpeechHandler isIndexPoint={this.props.isIndexPoint} 
                         handPos={this.props.handPos} 
                         isCircular={this.props.isCircular}
                         onStartDraw={() => this.updateIsDrawing(true)} 
                         onEndDraw={() => this.updateIsDrawing(false)}
+                        onUndo={() => this.onUndo()}
+                        onClear={() => this.onClear()}
                         selectedColor={this.state.selectedColor} 
                         selectedThickness={this.state.selectedThickness} />
                     <ThickPalette handPos={this.props.handPos}
                         isGrabbing={this.props.isGrabbing}
-                        onSelectThickness={(selectedThickness) => this.onSelectThickness(selectedThickness)} />
+                        onSelectThickness={(selectedThickness, thicknessName) => this.onSelectThickness(selectedThickness, thicknessName)} />
                 </div>
-                <DrawHelper drawState={this.state.drawState} />
+                <DrawHelper drawState={this.state.drawState} announcement={this.state.announcement}/>
             </div>
         );
     }

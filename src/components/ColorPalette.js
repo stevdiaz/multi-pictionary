@@ -24,7 +24,7 @@ export default class ColorPalette extends React.Component {
             if (intersects && this.state.selectedColor !== colors[color]) {
                 this.setState({
                     selectedColor: colors[color],
-                }, () => this.props.onSelectColor(this.state.selectedColor));
+                }, () => this.props.onSelectColor(this.state.selectedColor, color));
             }
         })
     }

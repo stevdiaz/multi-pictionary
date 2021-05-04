@@ -39,8 +39,10 @@ export default class Canvas extends React.Component {
             this.props.onEndDraw();
         } else if (this.props.undoId > prevProps.undoId) {
             this.undo();
+            this.props.onUndo();
         } else if (this.props.clearId > prevProps.clearId) {
             this.clear({forUndo: false});
+            this.props.onClear();
         }
     }
     transform(handPos) {

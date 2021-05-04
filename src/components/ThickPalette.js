@@ -33,7 +33,7 @@ export default class ThickPalette extends React.Component {
             if (intersects && this.state.selectedThickness !== thickness[thicknessValue]) {
                 this.setState({
                     selectedThickness: thickness[thicknessValue],
-                }, () => this.props.onSelectThickness(this.state.selectedThickness));
+                }, () => this.props.onSelectThickness(this.state.selectedThickness, thicknessValue));
             }
         })
     }
