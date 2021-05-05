@@ -1,5 +1,6 @@
 // server/index.js
 
+const path = require('path');
 const express = require("express");
 
 const PORT = process.env.PORT || 3001;
@@ -9,10 +10,6 @@ const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-
-app.get("/api", (req, res) => {
-    res.json({message: "Hello from the server!"});
-});
 
 const socketToRoom = {}; // maps socket.id to roomName
 const roomToSockets = {}; // maps roomName to list of socket.id 
@@ -87,6 +84,19 @@ io.on("connection", (socket) => {
         const roomName = socketToRoom[socket.id];
 
     })
+});
+
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+// Handle GET requests to /api route
+app.get("/api", (req, res) => {
+    res.json({message: "Hello from the server!"});
+});
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 server.listen(PORT, () => {
