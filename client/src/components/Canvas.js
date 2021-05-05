@@ -38,11 +38,11 @@ export default class Canvas extends React.Component {
             if (!this.state.isDrawing && this.props.isIndexPoint && !prevProps.isIndexPoint) {
                 this.onStartDraw(transformedHandPos);
                 this.props.onStartDraw();
-                emitDraw();
+                // emitDraw();
             } else if (this.state.isDrawing && this.props.isIndexPoint && prevProps.isIndexPoint && 
                 this.props.handPos !== prevProps.handPos) {
                 this.onMoveFinger(transformedHandPos);
-                emitDraw();
+                // emitDraw();
             } else if (this.state.isDrawing && !this.props.isIndexPoint && prevProps.isIndexPoint) {
                 this.onEndDraw();
                 this.props.onEndDraw();

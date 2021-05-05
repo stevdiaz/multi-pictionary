@@ -70,10 +70,9 @@ io.on("connection", (socket) => {
         socket.to(roomName).emit('startGame');
         callback({ error: false });
     });
-    socket.on('drawerSelectWord', (word, callback) => {
+    socket.on('drawerSelectWord', (word) => {
         const roomName = socketToRoom[socket.id];
         socket.to(roomName).emit('selectWord', word);
-        callback({ error: false });
     });
     socket.on('drawerDraw', (...strokes) => {
         const roomName = socketToRoom[socket.id];

@@ -11,6 +11,7 @@ import ColorPalette from './components/ColorPalette';
 import JoinCreate from './components/JoinCreate';
 import WaitingRoom from './components/WaitingRoom';
 import Guesser from './components/Guesser';
+import GuesserSidePanel from './components/GuesserSidePanel';
 
 export default class App extends React.Component {
   constructor(props) {

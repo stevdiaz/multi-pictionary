@@ -15,6 +15,7 @@ export default class DrawCard extends React.Component {
     }
     componentDidUpdate(prevProps) {
         if (this.props.isDrawing && !this.state.didStartDrawing) {
+            this.props.onSelectWord(this.options[this.state.index]);
             this.setState({
                 didStartDrawing: true,
             });

@@ -54,10 +54,13 @@ export default class Drawer extends React.Component {
             announcement: announcements.clearSuccessfulAnnouncement(),
         });
     }
+    onSelectWord(word) {
+        this.props.socket.emit('drawerSelectWord', word);
+    }
     render() {
         return (
             <div className='Drawer-container'>
-                <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing}/>
+                <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
                 <div className='Drawer-row'>
                     <ColorPalette handPos={this.props.handPos} 
                         isGrabbing={this.props.isGrabbing}

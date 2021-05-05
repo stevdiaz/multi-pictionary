@@ -32,7 +32,7 @@ const clear = () => {
 export default function CanvasSpeechHandler(props) {
     const commands = getCommands();
     SpeechRecognition.startListening({continuous: true});
-    const { transcript } = useSpeechRecognition({ commands });
+    const { transcript, finalTranscript } = useSpeechRecognition({ commands });
     return <Canvas undoId={undoId} clearId={clearId} {...props} />;
 } 
 

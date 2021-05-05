@@ -37,10 +37,19 @@ export const drawStates = {
     drawingState,
 };
 
+const waitingState = 'wait';
+const guessingState = 'guess';
+const correctState = 'correct';
+export const guessStates = {
+    waitingState,
+    guessingState,
+    correctState,
+};
+
 const colorSelectedAnnouncement = (color) => "you have selected color " + color;
 const thicknessSelectedAnnouncement = (thickness) => "you have selected thickness " + thickness;
-const undoSuccessfulAnnouncement = () => "undo successfull";
-const clearSuccessfulAnnouncement = () => "clear successfull";
+const undoSuccessfulAnnouncement = () => "undo successful";
+const clearSuccessfulAnnouncement = () => "clear successful";
 export const announcements = {
     colorSelectedAnnouncement,
     thicknessSelectedAnnouncement,

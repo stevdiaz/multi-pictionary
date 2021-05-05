@@ -1,0 +1,33 @@
+.GuesserSidePanel-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: var(--primary-font);
+    font-size: 30px;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 20px;
+    margin-left: 50px;
+    overflow: scroll;
+    height: 80vh;
+}
+.GuesserSidePanel-guesses {
+    display: table;
+    margin: 0 auto;
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    font-size: 35px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+.GuesserSidePanel-correct {
+    color: var(--green);
+    margin-bottom: 10px;
+}
+.GuesserSidePanel-incorrect {
+    color: var(--error-red);
+    margin-bottom: 10px;
+}
+.GuesserSidePanel-correctBlurb {
+    margin-top: 100px;
+}
