@@ -4,6 +4,7 @@ import './Guesser.css';
 import Canvas from './Canvas';
 import GuesserSidePanelSpeechHandler from './GuesserSidePanelSpeechHandler';
 import GuessHelper from './GuessHelper';
+import GuessStatus from './GuessStatus';
 
 import {guessStates} from '../helpers/constants';
 
@@ -27,6 +28,7 @@ export default class Guesser extends React.Component {
 
     }
     onGuessCorrectly() {
+        this.props.socket.emit('guesserCorrect');
         this.setState({
             guessState: guessStates.correctState,
         });
@@ -35,10 +37,13 @@ export default class Guesser extends React.Component {
         const topBlurb = this.state.guessState === guessStates.waitingState ? 'Drawer is choosing a word...' : 'Drawer is drawing the word';
         return (
             <div className='Guesser-container'>
-                <div className='Guesser-topBlurb'>
-                   {topBlurb}
-                </div>
-                <div className='Guesser-row'> 
+                <div className='Guesser-row Guesser-topRow'>
+                    <GuessStatus socket={this.props.socket} />
+                    <div className='Guesser-topBlurb'>
+                        {topBlurb}
+                    </div>
+                </div>    
+                <div className='Guesser-row Guesser-botRow'> 
                     <Canvas socket={this.props.socket}
                             isDrawer={false} />
                     <GuesserSidePanelSpeechHandler selectedWord={this.state.selectedWord}

@@ -6,7 +6,7 @@
     justify-content: center;
 }
 .Guesser-topBlurb {
-    /* margin: 20px; */
+    margin-top: 20px;
     font-weight: 400;
     font-size: 38px;
     font-family: var(--primary-font);
@@ -22,4 +22,10 @@
 .Guesser-row {
     display: flex;
     flex-direction: row;
+}
+.Guesser-topRow {
+    gap: 300px;
+}
+.Guesser-botRow {
+    margin-left: 15vw;
 }

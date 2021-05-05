@@ -69,6 +69,7 @@ io.on("connection", (socket) => {
     });
     socket.on('creatorStartGame', (callback) => {
         const roomName = socketToRoom[socket.id];
+        roomToCorrectGuesses[roomName] = 0;
         socket.to(roomName).emit('startGame');
         callback({ error: false });
     });
@@ -80,10 +81,17 @@ io.on("connection", (socket) => {
         const roomName = socketToRoom[socket.id];
         socket.to(roomName).emit('draw', ...strokes);
     });
+    socket.on('getRoomSize', (callback) => {
+        const roomName = socketToRoom[socket.id];
+        const roomSize = roomToSockets[roomName].length;
+        callback({ error: false, roomSize});
+    });
     socket.on('guesserCorrect', () => {
         const roomName = socketToRoom[socket.id];
-
-    })
+        roomToCorrectGuesses[roomName]++;
+        const correctGuesses = roomToCorrectGuesses[roomName];
+        io.in(roomName).emit('guesserCorrectUpdate', correctGuesses);
+    });
 });
 
 // Have Node serve the files for our built React app

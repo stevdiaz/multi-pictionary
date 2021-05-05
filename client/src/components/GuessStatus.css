@@ -1,0 +1,12 @@
+.GuessStatus-container {
+    font-family: var(--primary-font);
+    font-size: 28px;
+    color: var(--secondary-color);
+    text-align: center;
+    /* display: flex;
+    flex-direction: column; */
+    margin: 20px;
+}
+.GuessStatus-correct {
+    color: var(--green);
+}

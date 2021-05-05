@@ -6,6 +6,7 @@ import DrawCard from './DrawCard';
 import DrawHelper from './DrawHelper';
 import ColorPalette from './ColorPalette';
 import ThickPalette from './ThickPalette';
+import GuessStatus from './GuessStatus';
 
 import { drawStates, colors, defaultColor, thickness, defaultThickness, announcements } from '../helpers/constants';
 
@@ -60,7 +61,10 @@ export default class Drawer extends React.Component {
     render() {
         return (
             <div className='Drawer-container'>
-                <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
+                <div className='Drawer-row Drawer-topRow'>
+                    <GuessStatus socket={this.props.socket} />
+                    <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
+                </div>
                 <div className='Drawer-row'>
                     <ColorPalette handPos={this.props.handPos} 
                         isGrabbing={this.props.isGrabbing}
