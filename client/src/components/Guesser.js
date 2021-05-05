@@ -38,7 +38,7 @@ export default class Guesser extends React.Component {
         return (
             <div className='Guesser-container'>
                 <div className='Guesser-row Guesser-topRow'>
-                    <GuessStatus socket={this.props.socket} />
+                    <GuessStatus isDrawer={false} socket={this.props.socket} />
                     <div className='Guesser-topBlurb'>
                         {topBlurb}
                     </div>

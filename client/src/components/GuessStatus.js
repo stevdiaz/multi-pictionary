@@ -5,8 +5,10 @@ export default class GuessStatus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            guessesCorrect: 0,
+            correctGuesses: 0,
             amountOfGuessers: 0,
+            didStartNewRound: false,
+            didReceiveRoomSize: false,
         };
     }
     componentDidMount() {
@@ -14,22 +16,27 @@ export default class GuessStatus extends React.Component {
             if (!response.error) {
                 this.setState({
                     amountOfGuessers: response.roomSize - 1,
+                    didReceiveRoomSize: true,
                 });
             }
         });
         this.props.socket.on('guesserCorrectUpdate', (correctGuesses) => {
             this.setState({
-                guessesCorrect: correctGuesses,
+                correctGuesses: correctGuesses,
             });
         });
     }
     componentDidUpdate() {
-
+        if (!this.state.didStartNewRound && this.props.isDrawer && this.didReceiveRoomSize && this.state.correctGuesses === this.state.amountOfGuessers) {
+            this.setState({
+                didStartNewRound: true,
+            }, () => this.props.socket.emit('roundOver'));
+        }
     }
     render() {
         return (
             <div className='GuessStatus-container'>
-                Correct Guesses: <span className='GuessStatus-correct'> {this.state.guessesCorrect} </span> / {this.state.amountOfGuessers}
+                Correct Guesses: <span className='GuessStatus-correct'> {this.state.correctGuesses} </span> / {this.state.amountOfGuessers}
             </div>
         )
     }

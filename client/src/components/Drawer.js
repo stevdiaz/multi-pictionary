@@ -62,7 +62,7 @@ export default class Drawer extends React.Component {
         return (
             <div className='Drawer-container'>
                 <div className='Drawer-row Drawer-topRow'>
-                    <GuessStatus socket={this.props.socket} />
+                    <GuessStatus isDrawer={true} socket={this.props.socket} />
                     <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
                 </div>
                 <div className='Drawer-row'>

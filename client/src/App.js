@@ -32,7 +32,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-  
+    this.socket.on('newRound', (isDrawer) => {
+      this.setState({
+        isDrawer: isDrawer,
+      });
+    });
   }
   componentDidUpdate() {
 
