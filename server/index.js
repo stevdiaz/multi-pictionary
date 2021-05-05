@@ -16,6 +16,8 @@ app.get("/api", (req, res) => {
 
 const socketToRoom = {}; // maps socket.id to roomName
 const roomToSockets = {}; // maps roomName to list of socket.id 
+const roomToCorrectGuesses = {}; // maps roomName to the # of correct guesses
+const roomToIndex = {}; // maps roomName to index of the drawer socket for the game
 
 function collectRooms() {
     return Object.keys(roomToSockets);
@@ -32,6 +34,9 @@ function containsRoom(roomName) {
 function removeSocketFromAllRooms(socketId) {
     collectRooms().forEach(room => {
         roomToSockets[room] = roomToSockets[room].filter(joinedSocketId => joinedSocketId != socketId);
+        if (roomToSockets[room].length === 0) {
+            delete roomToSockets[room];
+        }
     });
 }
 
@@ -78,6 +83,10 @@ io.on("connection", (socket) => {
         const roomName = socketToRoom[socket.id];
         socket.to(roomName).emit('draw', ...strokes);
     });
+    socket.on('guesserCorrect', () => {
+        const roomName = socketToRoom[socket.id];
+
+    })
 });
 
 server.listen(PORT, () => {
