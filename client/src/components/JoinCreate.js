@@ -20,7 +20,6 @@ export default class JoinCreate extends React.Component {
 
     }
     onChooseCreate() {
-        console.log("did choose create");
         if (this.state.roomName.length === 0) {
             this.setState({
                 isError: true,
@@ -46,7 +45,6 @@ export default class JoinCreate extends React.Component {
         }
     }
     onChooseJoin() {
-        console.log("did choose join");
         if (this.state.roomName.length === 0) {
             this.setState({
                 isError: true,

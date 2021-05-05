@@ -19,6 +19,9 @@ export default class WaitingRoom extends React.Component {
                 roomSize: roomSize,
             });
         });
+        this.props.socket.on('startGame', () => {
+            this.props.onStartGame();
+        })
     }
     componentDidUpdate(prevProps) {
         if (this.props.isGrabbing && !prevProps.isGrabbing) {
@@ -26,7 +29,13 @@ export default class WaitingRoom extends React.Component {
         }
     }
     onStartGame() {
-        // do something
+        if (this.props.isCreator) {
+            this.props.socket.emit('creatorStartGame', (response) => {
+                if (!response.error) {
+                    this.props.onStartGame();
+                }
+            });
+        }
     }
     render() {
         return (

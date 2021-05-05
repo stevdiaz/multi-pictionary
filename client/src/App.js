@@ -10,6 +10,7 @@ import Drawer from './components/Drawer';
 import ColorPalette from './components/ColorPalette';
 import JoinCreate from './components/JoinCreate';
 import WaitingRoom from './components/WaitingRoom';
+import Guesser from './components/Guesser';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
         isSwipe: false,
         isRight: false,
       },
+      isDrawer: false,
     };
     this.socket = socketIOClient();
   }
@@ -55,18 +57,32 @@ export default class App extends React.Component {
       swipeObject: swipeObject,
     });
   }
+  onStartGame(isDrawer) {
+    this.setState({
+      didTransitionToDraw: true,
+      isDrawer: isDrawer,
+    });
+  }
   render() {
-    let content = (<Entry handPos={this.state.handPos} isGrabbing={this.state.isGrabbing} socket={this.socket}/>);
-    if (this.state.isGrabbing && !this.state.didTransitionToDraw) {
-      this.setState({
-        didTransitionToDraw: true,
-      });
-    }
+    let content = (<Entry handPos={this.state.handPos} 
+                          isGrabbing={this.state.isGrabbing} 
+                          socket={this.socket} 
+                          onStartGame={(isDrawer) => this.onStartGame(isDrawer)}/>);
+
     if (this.state.didTransitionToDraw) {
-      content = (<Drawer isIndexPoint={this.state.isIndexPoint} 
-                          handPos={this.state.handPos} 
-                          swipeObject={this.state.swipeObject}
-                          isGrabbing={this.state.isGrabbing}/>);
+      if (this.state.isDrawer) {
+        content = (<Drawer isIndexPoint={this.state.isIndexPoint} 
+                            handPos={this.state.handPos} 
+                            swipeObject={this.state.swipeObject}
+                            isGrabbing={this.state.isGrabbing} 
+                            socket={this.socket} />);
+      } else {
+        content = (<Guesser isIndexPoint={this.state.isIndexPoint} 
+                            handPos={this.state.handPos}
+                            swipeObject={this.state.swipeObject}
+                            isGrabbing={this.state.isGrabbing}
+                            socket={this.socket} />);
+      }
     }
     return (
       <div>

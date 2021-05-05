@@ -65,6 +65,20 @@ io.on("connection", (socket) => {
         }
         callback({ error, roomSize });
     });
+    socket.on('creatorStartGame', (callback) => {
+        const roomName = socketToRoom[socket.id];
+        socket.to(roomName).emit('startGame');
+        callback({ error: false });
+    });
+    socket.on('drawerSelectWord', (word, callback) => {
+        const roomName = socketToRoom[socket.id];
+        socket.to(roomName).emit('selectWord', word);
+        callback({ error: false });
+    });
+    socket.on('drawerDraw', (...strokes) => {
+        const roomName = socketToRoom[socket.id];
+        socket.to(roomName).emit('draw', ...strokes);
+    });
 });
 
 server.listen(PORT, () => {

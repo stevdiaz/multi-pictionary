@@ -24,25 +24,36 @@ export default class Canvas extends React.Component {
         const ctx = this.getCtx();
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
-        ctx.lineWidth = this.props.selectedThickness; 
+        ctx.lineWidth = this.props.selectedThickness;
+        if (!this.props.isDrawer) {
+            this.props.socket.on('draw', (...strokes) => {
+                this.clear({forUndo: false}, () => this.drawFromStrokes(strokes));
+            });
+        } 
     }
     componentDidUpdate(prevProps) {
-        const transformedHandPos = this.transform(this.props.handPos);
-        if (!this.state.isDrawing && this.props.isIndexPoint && !prevProps.isIndexPoint) {
-            this.onStartDraw(transformedHandPos);
-            this.props.onStartDraw();
-        } else if (this.state.isDrawing && this.props.isIndexPoint && prevProps.isIndexPoint && 
-            this.props.handPos !== prevProps.handPos) {
-            this.onMoveFinger(transformedHandPos);
-        } else if (this.state.isDrawing && !this.props.isIndexPoint && prevProps.isIndexPoint) {
-            this.onEndDraw();
-            this.props.onEndDraw();
-        } else if (this.props.undoId > prevProps.undoId) {
-            this.undo();
-            this.props.onUndo();
-        } else if (this.props.clearId > prevProps.clearId) {
-            this.clear({forUndo: false});
-            this.props.onClear();
+        if (this.props.isDrawer) {
+            const transformedHandPos = this.transform(this.props.handPos);
+            const emitDraw = () => this.props.socket.emit('drawerDraw', ...this.state.strokes);
+            if (!this.state.isDrawing && this.props.isIndexPoint && !prevProps.isIndexPoint) {
+                this.onStartDraw(transformedHandPos);
+                this.props.onStartDraw();
+                emitDraw();
+            } else if (this.state.isDrawing && this.props.isIndexPoint && prevProps.isIndexPoint && 
+                this.props.handPos !== prevProps.handPos) {
+                this.onMoveFinger(transformedHandPos);
+                emitDraw();
+            } else if (this.state.isDrawing && !this.props.isIndexPoint && prevProps.isIndexPoint) {
+                this.onEndDraw();
+                this.props.onEndDraw();
+                emitDraw();
+            } else if (this.props.undoId > prevProps.undoId) {
+                this.undo(emitDraw);
+                this.props.onUndo();
+            } else if (this.props.clearId > prevProps.clearId) {
+                this.clear({forUndo: false}, emitDraw);
+                this.props.onClear();
+            }
         }
     }
     transform(handPos) {
@@ -109,31 +120,33 @@ export default class Canvas extends React.Component {
             },
         });
     }
-    clear({forUndo}) {
-        console.log('clear');
+    clear({forUndo}, callback) {
         const ctx = this.getCtx();
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         if (!forUndo) {
             this.setState({
                 strokes: [],
-            });
+            }, () => callback());
         }
     }
-    undo() {
-        console.log('undo');
+    undo(callback) {
         this.clear({forUndo: true});
         let strokes = [...this.state.strokes];
         strokes.pop();
         this.setState({
             strokes: strokes,
         }, () => {
-            this.state.strokes.forEach(stroke => {
-                for (let i = 1; i < stroke.positions.length; i++) {
-                    const prevPos = stroke.positions[i-1];
-                    const currPos = stroke.positions[i];
-                    this.paint(prevPos, currPos, stroke.color, stroke.thickness);
-                }
-            });
+            this.drawFromStrokes(this.state.strokes);
+            callback();
+        });
+    }
+    drawFromStrokes(strokes) {
+        strokes.forEach(stroke => {
+            for (let i = 1; i < stroke.positions.length; i++) {
+                const prevPos = stroke.positions[i-1];
+                const currPos = stroke.positions[i];
+                this.paint(prevPos, currPos, stroke.color, stroke.thickness);
+            }
         });
     }
     getCtx() {

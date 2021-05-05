@@ -70,7 +70,9 @@ export default class Drawer extends React.Component {
                         onUndo={() => this.onUndo()}
                         onClear={() => this.onClear()}
                         selectedColor={this.state.selectedColor} 
-                        selectedThickness={this.state.selectedThickness} />
+                        selectedThickness={this.state.selectedThickness} 
+                        socket={this.props.socket}
+                        isDrawer={true} />
                     <ThickPalette handPos={this.props.handPos}
                         isGrabbing={this.props.isGrabbing}
                         onSelectThickness={(selectedThickness, thicknessName) => this.onSelectThickness(selectedThickness, thicknessName)} />
