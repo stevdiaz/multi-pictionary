@@ -1,0 +1,27 @@
+.JoinCreate-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: var(--primary-font);
+    justify-content: center;
+}
+.JoinCreate-description {
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 50px;
+    font-weight: 200;
+    margin-top: 20px;
+}
+.JoinCreate-row {
+    display: flex;
+    flex-direction: row;
+}
+.JoinCreate-status {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.JoinCreate-error {
+    color: var(--error-red);
+}

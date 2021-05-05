@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import './Entry.css';
 
 import SmallButton from './SmallButton';
+import JoinCreate from './JoinCreate';
+import WaitingRoom from './WaitingRoom';
 
 export default class Entry extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             didPressStart: false,
+            didJoinCreate: false,
+            roomName: "",
+            isCreator: false,
         };
     }
     componentDidMount() {
@@ -19,7 +24,27 @@ export default class Entry extends React.Component {
     didClickStart() {
         console.log('started');
     }
+    onJoinCreate(roomName, roomSize, isCreator) {
+        this.setState({
+            didJoinCreate: true,
+            roomName: roomName,
+            roomSize: roomSize,
+            isCreator: isCreator,
+        });
+    }
     render() {
+        let content = (<JoinCreate handPos={this.state.handPos} 
+                                    isGrabbing={this.state.isGrabbing} 
+                                    socket={this.props.socket} 
+                                    onJoinCreate={(roomName, roomSize, isCreator) => this.onJoinCreate(roomName, roomSize, isCreator)} />);
+        if (this.state.didJoinCreate) {
+            content = (<WaitingRoom isCreator={this.state.isCreator} 
+                                    roomName={this.state.roomName} 
+                                    roomSize={this.state.roomSize}
+                                    handPos={this.state.handPos} 
+                                    isGrabbing={this.state.isGrabbing} 
+                                    socket={this.props.socket} />);
+        }
         return (
             <div className='Entry-container'>
                 <div className='Entry-firstLine'>
@@ -33,9 +58,10 @@ export default class Entry extends React.Component {
                     remote pictionary with your friends, done right
                 </div>
 
-                <div className='Entry-startButton'>
-                    <SmallButton buttonText='Close Fist to Start Game' onButtonClick={() => this.didClickStart()} />
+                <div className='Entry-content'>
+                    {content}
                 </div>
+                
             </div>
         )
     };

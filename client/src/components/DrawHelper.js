@@ -31,7 +31,7 @@ export default class DrawHelper extends React.Component {
     setNoAnnouncement(announcementId) {
         // set to false if the ids are identical (since we have already announced)
         this.setState(prevState => ({
-            makeAnnouncement: announcementId != prevState.announcementId,
+            makeAnnouncement: announcementId !== prevState.announcementId,
         }));
     }
     render() {

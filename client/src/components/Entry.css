@@ -1,6 +1,5 @@
 .Entry-container {
     position: relative;
-    top: 5vh;
     text-align: center;
 }
 .Entry-firstLine {
@@ -19,7 +18,7 @@
     position: relative;
 }
 .Entry-description {
-    margin-top: 300px;
+    margin-top: 10px;
     font-family: var(--secondary-font);
     font-size: 50px;
     font-weight: 200;
@@ -27,4 +26,7 @@
 }
 .Entry-startButton {
     position: relative;
+}
+.Entry-content {
+    margin-top: 150px;
 }

@@ -1,0 +1,23 @@
+.SmallText-text {
+    cursor: pointer;
+    border-radius: 2%;
+    border-color: var(--primary-color);
+    padding: 10px;
+    padding-top: 15px;
+    font-size: 50px;
+    text-align: center;
+    background-color: var(--offwhite);
+    font-family: var(--primary-font);
+    font-weight: 400;
+    color: var(--secondary-color);
+    width: 30%;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

@@ -1,0 +1,28 @@
+.WaitingRoom-container {
+
+}
+.WaitingRoom-description {
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 60px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+.WaitingRoom-roomName {
+    color: var(--primary-color);
+}
+.WaitingRoom-body {
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 50px;
+    font-weight: 200;
+    margin-top: 20px;
+}
+.WaitingRoom-start {
+
+}
+.WaitingRoom-wait {
+
+}

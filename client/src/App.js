@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import React, { Component } from 'react';
+import socketIOClient from 'socket.io-client';
 import './App.css';
 
 import Cursor from './components/Cursor';
@@ -7,6 +8,8 @@ import Entry from './components/Entry';
 import Canvas from './components/Canvas';
 import Drawer from './components/Drawer';
 import ColorPalette from './components/ColorPalette';
+import JoinCreate from './components/JoinCreate';
+import WaitingRoom from './components/WaitingRoom';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,6 +25,7 @@ export default class App extends React.Component {
         isRight: false,
       },
     };
+    this.socket = socketIOClient();
   }
 
   componentDidMount() {
@@ -52,7 +56,7 @@ export default class App extends React.Component {
     });
   }
   render() {
-    let content = (<Entry />);
+    let content = (<Entry handPos={this.state.handPos} isGrabbing={this.state.isGrabbing} socket={this.socket}/>);
     if (this.state.isGrabbing && !this.state.didTransitionToDraw) {
       this.setState({
         didTransitionToDraw: true,

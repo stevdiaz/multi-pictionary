@@ -19,9 +19,6 @@ export default class ThickPalette extends React.Component {
     componentDidMount() {
 
     }
-    componentDidUpdate() {
-
-    }
     componentDidUpdate(prevProps) {
         if (this.props.isGrabbing && !prevProps.isGrabbing) {
             this.onHandGrab(this.props.handPos);
