@@ -27,15 +27,17 @@ export default class App extends React.Component {
         isRight: false,
       },
       isDrawer: false,
+      roundId: 0,
     };
     this.socket = socketIOClient();
   }
 
   componentDidMount() {
     this.socket.on('newRound', (isDrawer) => {
-      this.setState({
+      this.setState(prevState => ({
         isDrawer: isDrawer,
-      });
+        roundId: prevState.roundId + 1,
+      }));
     });
   }
   componentDidUpdate() {
@@ -86,7 +88,8 @@ export default class App extends React.Component {
                             handPos={this.state.handPos}
                             swipeObject={this.state.swipeObject}
                             isGrabbing={this.state.isGrabbing}
-                            socket={this.socket} />);
+                            socket={this.socket} 
+                            roundId={this.state.roundId} />);
       }
     }
     return (

@@ -26,11 +26,17 @@ export default class GuessStatus extends React.Component {
             });
         });
     }
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         if (!this.state.didStartNewRound && this.props.isDrawer && this.state.didReceiveRoomSize && this.state.correctGuesses === this.state.amountOfGuessers) {
             this.setState({
                 didStartNewRound: true,
             }, () => this.props.socket.emit('roundOver'));
+        } else if (this.props.roundId > prevProps.roundId) {
+            // reset for new round
+            this.setState({
+                correctGuesses: 0,
+                didStartNewRound: false,
+            })
         }
     }
     render() {

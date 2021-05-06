@@ -24,8 +24,14 @@ export default class Guesser extends React.Component {
             });
         });
     }
-    componentDidUpdate() {
-
+    componentDidUpdate(prevProps) {
+        if (this.props.roundId > prevProps.roundId) {
+            // reset for new round
+            this.setState({
+                guessState: guessStates.waitingState,
+                selectedWord: "nil",
+            });
+        }
     }
     onGuessCorrectly() {
         this.props.socket.emit('guesserCorrect');
@@ -38,16 +44,20 @@ export default class Guesser extends React.Component {
         return (
             <div className='Guesser-container'>
                 <div className='Guesser-row Guesser-topRow'>
-                    <GuessStatus isDrawer={false} socket={this.props.socket} />
+                    <GuessStatus isDrawer={false} 
+                                socket={this.props.socket} 
+                                roundId={this.props.roundId}/>
                     <div className='Guesser-topBlurb'>
                         {topBlurb}
                     </div>
                 </div>    
                 <div className='Guesser-row Guesser-botRow'> 
                     <Canvas socket={this.props.socket}
-                            isDrawer={false} />
+                            isDrawer={false} 
+                            roundId={this.props.roundId} />
                     <GuesserSidePanelSpeechHandler selectedWord={this.state.selectedWord}
-                                                    onGuessCorrectly={() => this.onGuessCorrectly()}/>
+                                                    onGuessCorrectly={() => this.onGuessCorrectly()}
+                                                    roundId={this.props.roundId} />
                 </div>
                 <GuessHelper guessState={this.state.guessState} />
             </div>

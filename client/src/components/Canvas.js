@@ -54,6 +54,10 @@ export default class Canvas extends React.Component {
                 this.clear({forUndo: false}, emitDraw);
                 this.props.onClear();
             }
+        } else {
+            if (this.props.roundId > prevProps.roundId) {
+                this.clear({forUndo: false}, () => {});
+            }
         }
     }
     transform(handPos) {
