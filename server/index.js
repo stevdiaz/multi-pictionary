@@ -108,7 +108,7 @@ io.on("connection", (socket) => {
         const socketsInRoom = roomToSockets[roomName];
         roomToCorrectGuesses[roomName] = 0;
         const currIndex = roomToDrawerIndex[roomName];
-        nextIndex = currIndex === socketsInRoom.length ? 0 : currIndex + 1;
+        nextIndex = currIndex === socketsInRoom.length-1 ? 0 : currIndex + 1;
         roomToDrawerIndex[roomName] = nextIndex;
         // tell all sockets there is a new round, socket with nextIndex as drawer
         for (var i = 0; i < socketsInRoom.length; i++) {

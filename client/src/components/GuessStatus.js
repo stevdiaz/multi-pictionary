@@ -27,7 +27,7 @@ export default class GuessStatus extends React.Component {
         });
     }
     componentDidUpdate() {
-        if (!this.state.didStartNewRound && this.props.isDrawer && this.didReceiveRoomSize && this.state.correctGuesses === this.state.amountOfGuessers) {
+        if (!this.state.didStartNewRound && this.props.isDrawer && this.state.didReceiveRoomSize && this.state.correctGuesses === this.state.amountOfGuessers) {
             this.setState({
                 didStartNewRound: true,
             }, () => this.props.socket.emit('roundOver'));
