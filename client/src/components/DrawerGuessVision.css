@@ -1,0 +1,27 @@
+.DrawerGuessVision-container {
+    font-family: var(--primary-font);
+    font-size: 28px;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 20px;
+    margin-left: 180px;
+    max-height: 50px;
+    max-width: 350px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    /* background-color: beige; */
+}
+/* Hide scrollbar for Chrome */
+.DrawerGuessVision-container::-webkit-scrollbar {
+    display: none;
+}
+.DrawerGuessVision-guess {
+
+}
+.DrawerGuessVision-correct {
+    color: var(--green);
+}
+.DrawerGuessVision-incorrect {
+    color: var(--error-red);
+}

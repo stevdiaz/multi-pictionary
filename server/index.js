@@ -97,6 +97,12 @@ io.on("connection", (socket) => {
         const roomSize = roomToSockets[roomName].length;
         callback({ error: false, roomSize});
     });
+    socket.on('guesserNewGuess', (newGuess) => {
+        const roomName = socketToRoom[socket.id];
+        const drawerIndex = roomToDrawerIndex[roomName];
+        const drawerSocket = roomToSockets[roomName][drawerIndex];
+        socket.to(drawerSocket).emit('guess', newGuess);
+    })
     socket.on('guesserCorrect', () => {
         const roomName = socketToRoom[socket.id];
         roomToCorrectGuesses[roomName]++;

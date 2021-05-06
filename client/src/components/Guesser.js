@@ -33,6 +33,9 @@ export default class Guesser extends React.Component {
             });
         }
     }
+    onGuess(newGuess) {
+        this.props.socket.emit('guesserNewGuess', newGuess);
+    }
     onGuessCorrectly() {
         this.props.socket.emit('guesserCorrect');
         this.setState({
@@ -56,6 +59,7 @@ export default class Guesser extends React.Component {
                             isDrawer={false} 
                             roundId={this.props.roundId} />
                     <GuesserSidePanelSpeechHandler selectedWord={this.state.selectedWord}
+                                                    onGuess={(newGuess) => this.onGuess(newGuess)}
                                                     onGuessCorrectly={() => this.onGuessCorrectly()}
                                                     roundId={this.props.roundId} />
                 </div>
