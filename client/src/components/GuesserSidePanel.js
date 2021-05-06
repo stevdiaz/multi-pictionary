@@ -12,9 +12,13 @@ export default class GuesserSidePanel extends React.Component {
 
     }
     componentDidUpdate(prevProps) {
-        if (this.props.guesses.length > 0 && this.props.guesses.length !== prevProps.guesses.length) {
-            const newGuess = this.props.guesses[this.props.guesses.length - 1];
-            this.props.onGuess(newGuess);
+        const guessesSize = this.props.guesses.length;
+        if (guessesSize > 0) {
+            const guessesLastItem = this.props.guesses[guessesSize - 1];
+            if (prevProps.guesses.length === 0 || guessesLastItem !== prevProps.guesses[guessesSize - 1]) {
+                const newGuess = guessesLastItem;
+                this.props.onGuess(newGuess);
+            }
         }
     }
     onGuessCorrectly() {
