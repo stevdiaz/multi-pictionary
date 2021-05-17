@@ -20,9 +20,8 @@ export default class DrawerGuessVision extends React.Component {
     }
     readGuess(guess) {
         var msg = new SpeechSynthesisUtterance();
-        msg.voice = window.speechSynthesis.getVoices()[0];
         msg.text = guess;
-        msg.rate = 0.3;
+        msg.rate = 0.7;
         speechSynthesis.speak(msg);
     }
     render() {
