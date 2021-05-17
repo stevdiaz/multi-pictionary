@@ -35,6 +35,7 @@ export default class App extends React.Component {
       this.setState(prevState => ({
         isDrawer: isDrawer,
         roundId: prevState.roundId + 1,
+        cursorColor: defaultCursorColor,
       }));
     });
   }
