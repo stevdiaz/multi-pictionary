@@ -17,10 +17,14 @@ export default class Canvas extends React.Component {
             ref: ref,
             containerRef: containerRef,
         };
+        this.canvasWidth = 0;
+        this.canvasHeight = 0;
     }
     componentDidMount() {
-        this.state.ref.current.width = this.state.containerRef.current.clientWidth;
-        this.state.ref.current.height = this.state.containerRef.current.clientHeight;
+        this.canvasWidth = this.state.containerRef.current.clientWidth;
+        this.canvasHeight = this.state.containerRef.current.clientHeight;
+        this.state.ref.current.width = this.canvasWidth;
+        this.state.ref.current.height = this.canvasHeight;
         const ctx = this.getCtx();
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
