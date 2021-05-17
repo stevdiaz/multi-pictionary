@@ -17,7 +17,7 @@ export default class DrawHelper extends React.Component {
 
     }
     componentDidUpdate(prevProps) {
-        if (this.props.announcement !== prevProps.announcement) {
+        if (this.props.announcement !== prevProps.announcement && this.props.announcement) {
             this.setState(prevState => ({
                 makeAnnouncement: true,
                 announcement: this.props.announcement,

@@ -21,10 +21,10 @@ export const defaultColor = colors[defaultColorString];
 
 export const defaultCursorColor = '#8CFF98';
 
-const smallThickness = 3;
-const mediumThickness = 5;
-const largeThickness = 7;
-const largerThickness = 10;
+const smallThickness = 4;
+const mediumThickness = 7;
+const largeThickness = 10;
+const largerThickness = 14;
 export const thickness = {
     small: smallThickness,
     medium: mediumThickness,
