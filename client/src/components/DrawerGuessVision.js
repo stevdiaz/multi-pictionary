@@ -12,11 +12,18 @@ export default class DrawerGuessVision extends React.Component {
         this.props.socket.on('guess', (newGuess) => {
             this.setState({
                 newGuess: newGuess,
-            });
+            }, () => this.readGuess(newGuess));
         });
     }
     componentDidUpdate() {
 
+    }
+    readGuess(guess) {
+        var msg = new SpeechSynthesisUtterance();
+        msg.voice = window.speechSynthesis.getVoices()[0];
+        msg.text = guess;
+        msg.rate = 0.3;
+        speechSynthesis.speak(msg);
     }
     render() {
         if (this.state.newGuess.length === 0 || this.props.selectedWord.length === 0) {
