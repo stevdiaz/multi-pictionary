@@ -5,6 +5,7 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         let ref = React.createRef();
+        let containerRef = React.createRef();
         this.state = {
             isDrawing: false,
             prevPos: {
@@ -14,13 +15,12 @@ export default class Canvas extends React.Component {
             line: [],
             strokes: [], // strokes[i] is stroke object, which contains color, thickness, and position fields
             ref: ref,
+            containerRef: containerRef,
         };
-        this.canvasWidth = '62.5vw';
-        this.canvasHeight = '80vh';
     }
     componentDidMount() {
-        this.state.ref.current.width = this.canvasWidth;
-        this.state.ref.current.height = this.canvasHeight;
+        this.state.ref.current.width = this.state.containerRef.current.clientWidth;
+        this.state.ref.current.height = this.state.containerRef.current.clientHeight;
         const ctx = this.getCtx();
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
@@ -157,7 +157,7 @@ export default class Canvas extends React.Component {
     render() {
         return (
             <div className='Canvas-container'>
-                <div className='Canvas-canvas'>
+                <div className='Canvas-canvas' ref={this.state.containerRef}>
                     <canvas
                         id='Canvas'
                         ref={this.state.ref}
