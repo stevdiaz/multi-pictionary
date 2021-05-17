@@ -39,7 +39,7 @@ export default class DrawHelper extends React.Component {
         if (this.props.drawState === drawStates.choosingState) {
             text = "swipe left or right with fingers extended to switch word";
         } else if (this.props.drawState === drawStates.drawingState) {
-            text = "say 'undo' or 'clear' to erase. hover over and grab colors or thickness levels";
+            text = "say 'help' for an explanation of all available gestures and commands";
         }
         if (this.state.makeAnnouncement) {
             text = this.state.announcement;

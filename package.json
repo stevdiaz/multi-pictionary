@@ -21,6 +21,7 @@
   "homepage": "https://github.com/stevdiaz/multi-pictionary#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "reactjs-popup": "^2.0.4",
     "socket.io": "^4.0.1"
   },
   "engines": {

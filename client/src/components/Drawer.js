@@ -8,6 +8,7 @@ import ColorPaletteSpeechHandler from './ColorPaletteSpeechHandler';
 import ThickPaletteSpeechHandler from './ThickPaletteSpeechHandler';
 import GuessStatus from './GuessStatus';
 import DrawerGuessVision from './DrawerGuessVision';
+import HelpPopUp from './HelpPopUp';
 
 import { drawStates, colors, defaultColor, thickness, defaultThickness, announcements } from '../helpers/constants';
 
@@ -66,6 +67,7 @@ export default class Drawer extends React.Component {
     render() {
         return (
             <div className='Drawer-container'>
+                <HelpPopUp />
                 <div className='Drawer-row Drawer-topRow'>
                     <GuessStatus isDrawer={true} socket={this.props.socket} />
                     <DrawCardSpeechHandler swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>

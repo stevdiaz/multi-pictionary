@@ -1,0 +1,34 @@
+.HelpPopUp-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: var(--primary-font);
+    border: 4px solid var(--secondary-color);
+    border-radius: 4px;
+    max-width: 60vw;
+    min-height: 30vh;
+    text-align: center;
+}
+.HelpPopUp-title {
+    font-family: var(--secondary-font);
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.HelpPopUp-body {
+    font-family: var(--primary-font);
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+.HelpPopUp-exit {
+    font-weight: 500;
+    color: var(--error-red);
+}
+.HelpPopUp-say {
+    font-weight: 500;
+    color: var(--wavy-blue)
+}
+.HelpPopUp-hand {
+    font-weight: 500;
+    color: var(--green);
+}
