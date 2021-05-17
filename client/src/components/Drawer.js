@@ -40,7 +40,7 @@ export default class Drawer extends React.Component {
         this.setState({
             selectedColor: selectedColor,
             announcement: announcements.colorSelectedAnnouncement(colorName),
-        });
+        }, () => this.props.onSelectColor(selectedColor));
     }
     onSelectThickness(selectedThickness, thicknessName) {
         this.setState({

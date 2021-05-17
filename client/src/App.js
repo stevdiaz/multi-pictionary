@@ -8,6 +8,8 @@ import Entry from './components/Entry';
 import Drawer from './components/Drawer';
 import Guesser from './components/Guesser';
 
+import { defaultCursorColor } from './helpers/constants';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ export default class App extends React.Component {
       },
       isDrawer: false,
       roundId: 0,
+      cursorColor: defaultCursorColor,
     };
     this.socket = socketIOClient();
   }
@@ -65,6 +68,11 @@ export default class App extends React.Component {
       isDrawer: isDrawer,
     });
   }
+  onChangeCursorColor(color) {
+    this.setState({
+      cursorColor: color,
+    });
+  }
   render() {
     let content = (<Entry handPos={this.state.handPos} 
                           isGrabbing={this.state.isGrabbing} 
@@ -77,7 +85,8 @@ export default class App extends React.Component {
                             handPos={this.state.handPos} 
                             swipeObject={this.state.swipeObject}
                             isGrabbing={this.state.isGrabbing} 
-                            socket={this.socket} />);
+                            socket={this.socket} 
+                            onSelectColor={(color) => this.onChangeCursorColor(color)} />);
       } else {
         content = (<Guesser isIndexPoint={this.state.isIndexPoint} 
                             handPos={this.state.handPos}
@@ -92,7 +101,8 @@ export default class App extends React.Component {
         <Cursor onHandGrabUpdate={(isGrabbing) => this.onHandGrabUpdate(isGrabbing)} 
                 onPointUpdate={(isIndexPoint, handPos) => this.onPointUpdate(isIndexPoint, handPos)}
                 onCircularUpdate={(isCircular) => this.onCircularUpdate(isCircular)}
-                onSwipeUpdate={(swipeObject) => this.onSwipeUpdate(swipeObject)}/>
+                onSwipeUpdate={(swipeObject) => this.onSwipeUpdate(swipeObject)}
+                cursorColor={this.state.cursorColor} />
         {content}
       </div>
     )

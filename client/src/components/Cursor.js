@@ -79,10 +79,6 @@ export default class Cursor extends React.Component {
     onlyIndexFingerExtended(hand) {
         return (hand.indexFinger.extended && !hand.ringFinger.extended && !hand.pinky.extended && !hand.thumb.extended && !hand.middleFinger.extended);
     }
-    allFingersExtended(hand) {
-        return true;
-        return (hand.indexFinger.extended && hand.ringFinger.extended && hand.pinky.extended && hand.middleFinger.extended);
-    }
     circularGesture(hand, gestures) {
         const circleGesture = gestures.filter(gesture => gesture.type === 'circle');
         return hand.pinky.extended && circleGesture.length === 1 && circleGesture.duration > 700;
@@ -116,7 +112,7 @@ export default class Cursor extends React.Component {
             className += ' Cursor-cursorNormal';
         }
         return (
-            <div className={className} style={{left: `${this.state.position.x}px`, top: `${this.state.position.y}px`}}/>
+            <div className={className} style={{left: `${this.state.position.x}px`, top: `${this.state.position.y}px`, backgroundColor: this.props.cursorColor}}/>
         )
     }
 }

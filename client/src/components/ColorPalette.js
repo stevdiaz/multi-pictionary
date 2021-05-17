@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ColorPalette.css';
 
-import {colors, defaultColor} from '../helpers/constants';
+import { colors, defaultColor, defaultColorString } from '../helpers/constants';
 
 export default class ColorPalette extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class ColorPalette extends React.Component {
         };
     }
     componentDidMount() {
-
+        this.props.onSelectColor(defaultColor, defaultColorString);
     }
     componentDidUpdate(prevProps) {
         if (this.props.isGrabbing && !prevProps.isGrabbing) {

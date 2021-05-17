@@ -10,7 +10,6 @@
     overflow-y: hidden;
     overflow-x: scroll;
     white-space: nowrap;
-    /* background-color: beige; */
 }
 /* Hide scrollbar for Chrome */
 .DrawerGuessVision-container::-webkit-scrollbar {
