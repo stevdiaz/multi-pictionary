@@ -4,8 +4,8 @@ import './Drawer.css';
 import CanvasSpeechHandler from './CanvasSpeechHandler';
 import DrawCard from './DrawCard';
 import DrawHelper from './DrawHelper';
-import ColorPalette from './ColorPalette';
-import ThickPalette from './ThickPalette';
+import ColorPaletteSpeechHandler from './ColorPaletteSpeechHandler';
+import ThickPaletteSpeechHandler from './ThickPaletteSpeechHandler';
 import GuessStatus from './GuessStatus';
 import DrawerGuessVision from './DrawerGuessVision';
 
@@ -72,7 +72,7 @@ export default class Drawer extends React.Component {
                     <DrawerGuessVision selectedWord={this.state.selectedWord} socket={this.props.socket} />
                 </div>
                 <div className='Drawer-row'>
-                    <ColorPalette handPos={this.props.handPos} 
+                    <ColorPaletteSpeechHandler handPos={this.props.handPos} 
                         isGrabbing={this.props.isGrabbing}
                         onSelectColor={(selectedColor, colorName) => this.onSelectColor(selectedColor, colorName)} />
                     <CanvasSpeechHandler isIndexPoint={this.props.isIndexPoint} 
@@ -86,7 +86,7 @@ export default class Drawer extends React.Component {
                         selectedThickness={this.state.selectedThickness} 
                         socket={this.props.socket}
                         isDrawer={true} />
-                    <ThickPalette handPos={this.props.handPos}
+                    <ThickPaletteSpeechHandler handPos={this.props.handPos}
                         isGrabbing={this.props.isGrabbing}
                         onSelectThickness={(selectedThickness, thicknessName) => this.onSelectThickness(selectedThickness, thicknessName)} />
                 </div>

@@ -17,24 +17,31 @@ export default class ColorPalette extends React.Component {
         if (this.props.isGrabbing && !prevProps.isGrabbing) {
             this.onHandGrab(this.props.handPos);
         }
+        if (this.props.voiceSelectedColorString !== prevProps.voiceSelectedColorString && 
+                this.state.selectedColor !== colors[this.props.voiceSelectedColorString]) {
+            this.onSelectColor(this.props.voiceSelectedColorString);
+        }
     }
     onHandGrab(handPos) {
-        Object.keys(colors).forEach(color => {
-            const intersects = this.doesIntersect(handPos, document.getElementById(color).getBoundingClientRect());
-            if (intersects && this.state.selectedColor !== colors[color]) {
-                this.setState({
-                    selectedColor: colors[color],
-                }, () => this.props.onSelectColor(this.state.selectedColor, color));
+        Object.keys(colors).forEach(colorString => {
+            const intersects = this.doesIntersect(handPos, document.getElementById(colorString).getBoundingClientRect());
+            if (intersects && this.state.selectedColor !== colors[colorString]) {
+                this.onSelectColor(colorString);
             }
         })
     }
     doesIntersect(handPos, rectangle) {
         return rectangle.left <= handPos.x && handPos.x <= rectangle.right && rectangle.top <= handPos.y && handPos.y <= rectangle.bottom; 
     }
+    onSelectColor(colorString) {
+        this.setState({
+            selectedColor: colors[colorString],
+        }, () => this.props.onSelectColor(this.state.selectedColor, colorString));
+    }
     render() {
-        const colorDivs = Object.keys(colors).map(color => {
+        const colorDivs = Object.keys(colors).map(colorString => {
             let className = 'ColorPalette-color';
-            if (colors[color] === this.state.selectedColor) {
+            if (colors[colorString] === this.state.selectedColor) {
                 if (this.state.selectedColor === colors.green) {
                     className += ' ColorPalette-colorSelectedGreen'
                 } else {
@@ -42,13 +49,14 @@ export default class ColorPalette extends React.Component {
                 }
             }
             return (
-                <div className={className} id={color} key={color} style={{backgroundColor: colors[color]}}/>
+                <div className={className} id={colorString} key={colorString} style={{backgroundColor: colors[colorString]}}/>
             );
         });
-        const colorRows = colorDivs.filter((color, index) => index % 2 === 0).map((firsColor, index) => {
+        const colorRows = colorDivs.filter((colorDiv, index) => index % 2 === 0).map((colorDiv, index) => {
+            const firstColor = colorDiv;
             const secondColor = colorDivs[2*index+1];
             return (<div className='ColorPalette-row' key={index}>
-                {firsColor}
+                {firstColor}
                 {secondColor}
             </div>);
         });

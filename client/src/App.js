@@ -5,13 +5,8 @@ import './App.css';
 
 import Cursor from './components/Cursor';
 import Entry from './components/Entry';
-import Canvas from './components/Canvas';
 import Drawer from './components/Drawer';
-import ColorPalette from './components/ColorPalette';
-import JoinCreate from './components/JoinCreate';
-import WaitingRoom from './components/WaitingRoom';
 import Guesser from './components/Guesser';
-import GuesserSidePanel from './components/GuesserSidePanel';
 
 export default class App extends React.Component {
   constructor(props) {

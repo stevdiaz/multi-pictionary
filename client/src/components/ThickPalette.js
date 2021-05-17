@@ -13,7 +13,7 @@ export default class ThickPalette extends React.Component {
             small : '50px',
             medium : '70px',
             large : '90px',
-            xLarge : '110px',
+            larger : '110px',
         };
     }
     componentDidMount() {
@@ -23,26 +23,33 @@ export default class ThickPalette extends React.Component {
         if (this.props.isGrabbing && !prevProps.isGrabbing) {
             this.onHandGrab(this.props.handPos);
         }
+        if (this.props.voiceSelectedThicknessString !== prevProps.voiceSelectedThicknessString && 
+                this.state.selectedThickness !== thickness[this.props.voiceSelectedThicknessString]) {
+            this.onSelectThickness(this.props.voiceSelectedThicknessString);
+        }
     }
     onHandGrab(handPos) {
-        Object.keys(thickness).forEach(thicknessValue => {
-            const intersects = this.doesIntersect(handPos, document.getElementById(thicknessValue).getBoundingClientRect());
-            if (intersects && this.state.selectedThickness !== thickness[thicknessValue]) {
-                this.setState({
-                    selectedThickness: thickness[thicknessValue],
-                }, () => this.props.onSelectThickness(this.state.selectedThickness, thicknessValue));
+        Object.keys(thickness).forEach(thicknessString => {
+            const intersects = this.doesIntersect(handPos, document.getElementById(thicknessString).getBoundingClientRect());
+            if (intersects && this.state.selectedThickness !== thickness[thicknessString]) {
+                this.onSelectThickness(thicknessString);
             }
         })
+    }
+    onSelectThickness(thicknessString) {
+        this.setState({
+            selectedThickness: thickness[thicknessString],
+        }, () => this.props.onSelectThickness(this.state.selectedThickness, thicknessString));
     }
     doesIntersect(handPos, rectangle) {
         return rectangle.left <= handPos.x && handPos.x <= rectangle.right && rectangle.top <= handPos.y && handPos.y <= rectangle.bottom; 
     }
     render() {
-        const thicknessDivs = Object.keys(thickness).map(thicknessValue => {
-            const size = this.sizeForThickness[thicknessValue];
-            const className = 'ThickPalette-thickness' + (this.state.selectedThickness === thickness[thicknessValue] ? ' ThickPalette-thicknessSelected' : '');
+        const thicknessDivs = Object.keys(thickness).map(thicknessString => {
+            const size = this.sizeForThickness[thicknessString];
+            const className = 'ThickPalette-thickness' + (this.state.selectedThickness === thickness[thicknessString] ? ' ThickPalette-thicknessSelected' : '');
             return (
-                <div className={className} id={thicknessValue} key={thicknessValue} style={{width: size, height: size}} />
+                <div className={className} id={thicknessString} key={thicknessString} style={{width: size, height: size}} />
             )
         });
         return (

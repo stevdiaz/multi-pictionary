@@ -5,7 +5,7 @@ const yellow = '#fff75c';
 const purple = '#d65cff';
 const green = '#00ff11';
 const orange = '#ffa35c';
-const grey = '#808080';
+const gray = '#808080';
 export const colors = {
     black,
     blue,
@@ -14,21 +14,23 @@ export const colors = {
     purple,
     green,
     orange,
-    grey
+    gray
 };
-export const defaultColor = black;
+export const defaultColorString = 'black';
+export const defaultColor = colors[defaultColorString];
 
 const smallThickness = 3;
 const mediumThickness = 5;
 const largeThickness = 7;
-const xLargeThickness = 10;
+const largerThickness = 10;
 export const thickness = {
     small: smallThickness,
     medium: mediumThickness,
     large: largeThickness,
-    xLarge: xLargeThickness,
+    larger: largerThickness,
 };
-export const defaultThickness = mediumThickness;
+export const defaultThicknessString = 'medium';
+export const defaultThickness = thickness[defaultThicknessString];
 
 const choosingState = 'choose';
 const drawingState = 'draw';

@@ -19,7 +19,6 @@ export default class DrawerGuessVision extends React.Component {
 
     }
     render() {
-        console.log(this.props.selectedWord);
         if (this.state.newGuess.length === 0 || this.props.selectedWord.length === 0) {
             return (<></>);
         } else {
