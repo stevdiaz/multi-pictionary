@@ -15,8 +15,8 @@ export default class Canvas extends React.Component {
             strokes: [], // strokes[i] is stroke object, which contains color, thickness, and position fields
             ref: ref,
         };
-        this.canvasWidth = 1200;
-        this.canvasHeight = 800;
+        this.canvasWidth = '62.5vw';
+        this.canvasHeight = '80vh';
     }
     componentDidMount() {
         this.state.ref.current.width = this.canvasWidth;
