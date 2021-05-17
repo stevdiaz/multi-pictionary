@@ -92,13 +92,17 @@ export default class Cursor extends React.Component {
         return swipeGesture.length > 0;
     }
     swipeIsRight(gestures) {
-        const swipeGesture = gestures.filter(gesture => gesture.type === 'swipe' && gesture.state === 'stop');
+        const swipeGesture = gestures.filter(gesture => gesture.type === 'swipe');
         if (swipeGesture.length > 0) {
-            const stop = swipeGesture[0];
-            if (stop.position[0] < 0 || stop.position[0] < 0) {
-                return true;
+            const gesture = swipeGesture[0];
+            var isHorizontal = Math.abs(gesture.direction[0] > Math.abs(gesture.direction[1]));
+            if (isHorizontal) {
+                if (gesture.direction[0] > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-            return false;
         }
         return false;
     }

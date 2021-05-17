@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Drawer.css';
 
 import CanvasSpeechHandler from './CanvasSpeechHandler';
-import DrawCard from './DrawCard';
+import DrawCardSpeechHandler from './DrawCardSpeechHandler';
 import DrawHelper from './DrawHelper';
 import ColorPaletteSpeechHandler from './ColorPaletteSpeechHandler';
 import ThickPaletteSpeechHandler from './ThickPaletteSpeechHandler';
@@ -68,7 +68,7 @@ export default class Drawer extends React.Component {
             <div className='Drawer-container'>
                 <div className='Drawer-row Drawer-topRow'>
                     <GuessStatus isDrawer={true} socket={this.props.socket} />
-                    <DrawCard swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
+                    <DrawCardSpeechHandler swipeObject={this.props.swipeObject} isDrawing={this.state.isDrawing} onSelectWord={(word) => this.onSelectWord(word)}/>
                     <DrawerGuessVision selectedWord={this.state.selectedWord} socket={this.props.socket} />
                 </div>
                 <div className='Drawer-row'>

@@ -8,29 +8,39 @@ export default class DrawCard extends React.Component {
             index: 0,
             didStartDrawing: false,
         };
-        this.options = ['cat', 'dog', 'car', 'bus', 'house', 'tree', 'pool', 'star', 'plane', 'computer'];
+        this.options = ['cat', 'dog', 'car', 'bus', 'house', 'tree', 'star', 'plane', 'mug', 'bike', 'fish', 'pizza', 'apple', 'spider'];
     }
     componentDidMount() {
 
     }
     componentDidUpdate(prevProps) {
-        if (this.props.isDrawing && !this.state.didStartDrawing) {
-            this.props.onSelectWord(this.options[this.state.index]);
-            this.setState({
-                didStartDrawing: true,
-            });
-        }
-        if (this.props.swipeObject.isSwipe && !prevProps.swipeObject.isSwipe && !this.state.didStartDrawing) {
-            let newIndex = this.state.index;
-            if (this.props.swipeObject.isRight) {
-                newIndex = (newIndex === this.options.length - 1 ? 0 : newIndex + 1);
-            } else {
-                newIndex = (newIndex === 0 ? this.options.length - 1 : newIndex - 1);
+        if (!this.state.didStartDrawing) {
+            if (this.props.isDrawing) {
+                this.props.onSelectWord(this.options[this.state.index]);
+                this.setState({
+                    didStartDrawing: true,
+                });
             }
-            this.setState({
-                index: newIndex,
-            });
+            if (this.props.swipeObject.isSwipe && !prevProps.swipeObject.isSwipe) {
+                this.onSwitchToCard(!this.props.swipeObject.isRight);
+            } 
+            if (this.props.nextId > prevProps.nextId) {
+                this.onSwitchToCard(true);
+            } else if (this.props.prevId > prevProps.prevId) {
+                this.onSwitchToCard(false);
+            }
         }
+    }
+    onSwitchToCard(isNext) {
+        let newIndex = this.state.index;
+        if (isNext) {
+            newIndex = (newIndex === this.options.length - 1 ? 0 : newIndex + 1);
+        } else {
+            newIndex = (newIndex === 0 ? this.options.length - 1 : newIndex - 1);
+        }
+        this.setState({
+            index: newIndex,
+        });
     }
     render() {
         let card = (<span className='DrawCard-card'>{this.options[this.state.index]}</span>);
