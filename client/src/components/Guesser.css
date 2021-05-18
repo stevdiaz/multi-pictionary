@@ -12,9 +12,6 @@
     font-family: var(--primary-font);
     color: var(--secondary-color);
     text-align: center;
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
     justify-content: center;
     align-items: center;
 }
