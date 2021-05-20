@@ -1,71 +1,37 @@
-# Getting Started with Create React App
+# Multimodal Pictionary
+## A project by Steven Diaz for MIT's 6.835 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Description
+This project attempts to solve the problems of online pictionary games by introducing multimodal aspects; the drawer can use their hands to draw in the space in front of their computer, as if it were a sketchpad, and the guesser can use their natural voices to guess out loud, as they would in-person. With these changes, the online game becomes more natural and fun to play with others.
 
-## Available Scripts
+### How to Use
+The code for the game is currently live at https://multi-pic.herokuapp.com/, and so you don't have to run anything on your local machine. Just visit that url to access the web app.
 
-In the project directory, you can run:
+### Table of Contents 
+Here is a table of contents of all the files in the codebase, along with a description of what each file does. Note that the .css files are not listed here, since they are just styling for their corresponding .js file
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# multi-pictionary
+| File        | Description |
+| ----------- | ----------- |
+| Canvas.js   | Displays and handles the user drawing on a canvas element       |
+| CanvasSpeechHandler.js | A wrapper of the Canvas component, used to detect voice commands for the Canvas (i.e. 'erase')        |
+| ColorPalette.js | Handles the display and selection of colors for the drawing ink |
+| ColorPaletteSpeechHandler.js | A wrapper of the ColorPalette component, used to detect voice commands for colors (i.e. 'switch') |
+| Cursor.js | Tracks the user's hand using the Leap Motion SDK and dispays a cursor on the screen |
+| DrawCard.js | Handles the display, switching, and selection of the words to draw |
+| DrawCardSpeechHandler.js | A wrapper of the DrawCard component, used to detect voice commands for switching word (i.e. 'next') |
+| Drawer.js | Displays the entire Drawer POV which the drawer sees |
+| DrawerGuessVision.js | Displays guesser information for the drawer, such as the most recent guesses |
+| DrawHelper.js | Displays helper announcements on the bottom of the screen for drawers |
+| Entry.js | Displays the first page when entering the web app |
+| Guesser.js | Displays the entire Guesser POV which a guesser sees |
+| GuesserSidePanel.js | Displays the guesser side panel which shows the list of the guesser's guesses |
+| GuesserSidePanelSpeechHandler.js | A wrapper of the GuesserSidePanelSpeechHandler, which detects the actual guesses made |
+| GuessHelper.js | Displays helper announcements on the bottom of the screen for guessers |
+| GuessStatus.js | Displays the number of guesses which are currently correct in the game |
+| HelpPopUp.js | Displays the help menu which pops up when users say 'help' |
+| JoinCreate.js | Handles creation and joining of rooms when users start a game |
+| SmallButton.js | Displays a green button throughout the app, for multiple purposes |
+| SmallText.js | Text entry input used for JoinCreate |
+| ThickPalette.js | Handles the display and selection of thickness colors for the drawing ink |
+| ThickPaletteSpeechHandler.js | A wrapper of the ThickPalette component, used to detect voice commands for thickness (i.e. 'switch') |
+| WaitingRoom.js | Displays the room size and waits for the original creator of a room to start the game |
