@@ -5,7 +5,7 @@
 This project attempts to solve the problems of online pictionary games by introducing multimodal aspects; the drawer can use their hands to draw in the space in front of their computer, as if it were a sketchpad, and the guesser can use their natural voices to guess out loud, as they would in-person. With these changes, the online game becomes more natural and fun to play with others.
 
 ### How to Use
-The code for the game is currently live at https://multi-pic.herokuapp.com/, and so you don't have to run anything on your local machine. Just visit that url to access the web app.
+The code for the game is currently live at https://multi-pic.herokuapp.com/, and so you don't have to run anything on your local machine. Just visit that URL to access the web app.
 
 ### Table of Contents 
 Here is a table of contents of all the files in the codebase, along with a description of what each file does. Note that the .css files are not listed here, since they are just styling for their corresponding .js file
