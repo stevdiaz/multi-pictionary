@@ -8,7 +8,7 @@ This project attempts to solve the problems of online pictionary games by introd
 The code for the game is currently live at https://multi-pic.herokuapp.com/, and so you don't have to run anything on your local machine. Just visit that URL to access the web app.
 
 ### Table of Contents 
-Here is a table of contents of all the files in the codebase, along with a description of what each file does. Note that the .css files are not listed here, since they are just styling for their corresponding .js file
+Here is a table of contents of all the files in the codebase, along with a description of what each file does. Note that the .css files are not listed here, since they are just styling for their corresponding .js file.
 
 | File        | Description |
 | ----------- | ----------- |
